@@ -1,0 +1,56 @@
+# .NET build
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code / VS cache
+.vscode/
+.vs/
+*.code-workspace
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+*.env
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test output / coverage
+htmlcov/
+.tox/
+.coverage
+.cache/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Virtualenv
+.venv/
