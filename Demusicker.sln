@@ -5,11 +5,13 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demusicker.UI", "Demusicker.UI\Demusicker.UI.csproj", "{4A489994-22B8-4335-A162-9F49B86C23EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demusicker.Metier", "Demusicker.Metier\Demusicker.Metier.csproj", "{3673A92B-7BF5-4EFD-B58F-2229EF542EB7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demusicker.Core", "Demusicker.Core\Demusicker.Core.csproj", "{24DF95AA-334C-4A3F-95F5-3D9E651509C9}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Demusicker.Python", "Demusicker.Python\Demusicker.Python.pyproj", "{9C023585-D6A4-4D80-B070-2BE6492F4CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demusicker.Launcher", "Demusicker.Launcher\Demusicker.Launcher.csproj", "{7593F5B2-340D-4EA4-AB3A-18538F00621C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demusicker.Traitements", "Demusicker.Traitements\Demusicker.Traitements.csproj", "{8DA6F4E6-D490-452A-A971-8CED3118F14D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +23,20 @@ Global
 		{4A489994-22B8-4335-A162-9F49B86C23EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A489994-22B8-4335-A162-9F49B86C23EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A489994-22B8-4335-A162-9F49B86C23EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3673A92B-7BF5-4EFD-B58F-2229EF542EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3673A92B-7BF5-4EFD-B58F-2229EF542EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3673A92B-7BF5-4EFD-B58F-2229EF542EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3673A92B-7BF5-4EFD-B58F-2229EF542EB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24DF95AA-334C-4A3F-95F5-3D9E651509C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24DF95AA-334C-4A3F-95F5-3D9E651509C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24DF95AA-334C-4A3F-95F5-3D9E651509C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24DF95AA-334C-4A3F-95F5-3D9E651509C9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C023585-D6A4-4D80-B070-2BE6492F4CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9C023585-D6A4-4D80-B070-2BE6492F4CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7593F5B2-340D-4EA4-AB3A-18538F00621C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7593F5B2-340D-4EA4-AB3A-18538F00621C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7593F5B2-340D-4EA4-AB3A-18538F00621C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7593F5B2-340D-4EA4-AB3A-18538F00621C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA6F4E6-D490-452A-A971-8CED3118F14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA6F4E6-D490-452A-A971-8CED3118F14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA6F4E6-D490-452A-A971-8CED3118F14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA6F4E6-D490-452A-A971-8CED3118F14D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
