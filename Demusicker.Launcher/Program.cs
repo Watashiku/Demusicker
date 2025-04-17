@@ -8,7 +8,7 @@ namespace Demusicker.Launcher;
 internal static class Program
 {
     [STAThread]
-    static void Main() 
+    static void Main()
     {
         ApplicationConfiguration.Initialize();
 

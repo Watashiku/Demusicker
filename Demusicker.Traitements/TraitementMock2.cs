@@ -1,9 +1,7 @@
 ﻿namespace Demusicker.Traitements;
 
-internal class TraitementMock : TraitementBase
-{
-    public override IEnumerable<Type> Dependencies => [typeof(TraitementMock2)];
-
+internal class TraitementMock2 : TraitementBase
+{ 
     protected override async Task ExecuterInterne(string projectRoot, IProgress<int> progress)
     {
         for (var i = 0; i < 100; i++)

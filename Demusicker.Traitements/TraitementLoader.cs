@@ -11,15 +11,48 @@ public class TraitementLoader : ITraitementLoader
         Assembly assembly = Assembly.GetExecutingAssembly();
 
         var types = assembly.GetTypes()
-            .Where(t => typeof(ITraitement).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+            .Where(t => typeof(TraitementBase).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
             .ToList();
 
         foreach (var type in types)
         {
-            var traitement = Activator.CreateInstance(type) as ITraitement;
-            traitements.Add(traitement!);
+            traitements.Add((Activator.CreateInstance(type) as ITraitement)!);
         }
 
-        return traitements;
+        return TrierParOrdreExecution(traitements);
     }
+
+    public static List<ITraitement> TrierParOrdreExecution(IEnumerable<ITraitement> traitements)
+    {
+        var traitementDict = traitements.ToDictionary(t => t.GetType());
+        var visited = new HashSet<Type>();
+        var loop = new HashSet<Type>();
+        var result = new List<ITraitement>();
+
+        void Visit(Type type)
+        {
+            if (visited.Contains(type))
+                return;
+
+            if (!traitementDict.TryGetValue(type, out ITraitement? traitement))
+                throw new InvalidOperationException($"Dépendance manquante : {type.Name}");
+
+            if (loop.Contains(type))
+                throw new InvalidOperationException($"Dépendance circulaire : {type.Name}");
+            loop.Add(type);
+
+            foreach (var depType in traitement.Dependencies)
+                Visit(depType);
+
+            loop.Remove(type);
+            visited.Add(type);
+            result.Add(traitement);
+        }
+
+        foreach (var type in traitementDict.Keys)
+            Visit(type);
+
+        return result;
+    }
+
 }

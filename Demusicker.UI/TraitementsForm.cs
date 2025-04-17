@@ -1,7 +1,6 @@
 using Demusicker.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Demusicker;
@@ -66,7 +65,7 @@ public partial class TraitementsForm : Form
                 progress.Value = 100;
                 UpdateTraitementUI();
             };
-            UpdateTraitementUI();
         }
+        UpdateTraitementUI();
     }
 }
