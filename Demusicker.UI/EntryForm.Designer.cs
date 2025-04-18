@@ -1,4 +1,4 @@
-﻿namespace Demusicker;
+﻿namespace Demusicker.UI;
 
 partial class EntryForm
 {

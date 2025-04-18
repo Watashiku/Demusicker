@@ -17,7 +17,7 @@ def main():
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
     separator = Separator('spleeter:4stems')
-    separator.separate_to_file(input_file, output_dir)
+    separator.separate_to_file(input_file, output_dir, filename_format = "{instrument}.{codec}",)
 
     print("Separation completed successfully.")
 

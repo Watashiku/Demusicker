@@ -2,8 +2,9 @@ namespace Demusicker.Core;
 
 public interface ITraitement
 {
+    public bool Running { get; }
     string Nom { get; }
-    Task Executer(string projectRoot, IProgress<int> progress);
-    bool PeutExecuter(string projectRoot);
-    IEnumerable<Type> Dependencies { get; }
+    Task<bool> Executer(IProgress<int> progress, int version);
+    int? DerniereVersion();
+    IEnumerable<Type> Dependences { get; }
 }

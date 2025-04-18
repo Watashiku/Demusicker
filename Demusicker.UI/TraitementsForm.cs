@@ -3,19 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Demusicker;
+namespace Demusicker.UI;
 
 public partial class TraitementsForm : Form
 {
     private readonly string projectPath;
-    private readonly ITraitementLoader traitementLoader;
+    private readonly ITraitementManager traitementManager;
     private readonly Dictionary<ITraitement, Button> boutons = [];
 
-    public TraitementsForm(string projectPath, ITraitementLoader traitementLoader)
+    public TraitementsForm(string projectPath, ITraitementManager traitementManager)
     {
         InitializeComponent();
         this.projectPath = projectPath;
-        this.traitementLoader = traitementLoader;
+        this.traitementManager = traitementManager;
         InitTraitementUI();
     }
 
@@ -23,13 +23,18 @@ public partial class TraitementsForm : Form
     {
         foreach (var (t, b) in boutons)
         {
-            b.Enabled = t.PeutExecuter(projectPath);
+            b.Enabled = traitementManager.VersionApresExecution(t) is not null;
+            var dv = t.DerniereVersion();
+            if (dv is not null)
+            {
+                b.BackColor = ButtonColorPalette.Get(dv);
+            }
         }
     }
 
     private void InitTraitementUI()
     {
-        var traitements = traitementLoader.ChargerTousLesTraitements();
+        var traitements = traitementManager.ChargerTousLesTraitements(projectPath);
 
         foreach (var t in traitements)
         {
@@ -60,8 +65,11 @@ public partial class TraitementsForm : Form
 
             button.Click += async (s, e) =>
             {
+                var version = traitementManager.VersionApresExecution(t);
+                if (version is null) return;
                 button.Enabled = false;
-                await t.Executer(projectPath, new Progress<int>(v => progress.Value = v));
+                var ok = await t.Executer(new Progress<int>(v => progress.Value = v), version.Value);
+                if (ok) traitementManager.MettreVersionAJour(version.Value);
                 progress.Value = 100;
                 UpdateTraitementUI();
             };

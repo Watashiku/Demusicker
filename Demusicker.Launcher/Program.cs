@@ -21,12 +21,8 @@ internal static class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
-        // Traitement
-        services.AddSingleton<ITraitementLoader, TraitementLoader>();
-
-        // UI
         services.AddTransient<EntryForm>();
-        services.AddTransient<ITraitementLoader, TraitementLoader>();
+        services.AddTransient<ITraitementManager, TraitementManager>();
         services.AddTransient<TraitementsFormFactory>();
     }
 }

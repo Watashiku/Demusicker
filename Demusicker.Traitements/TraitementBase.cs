@@ -4,23 +4,52 @@ namespace Demusicker.Traitements;
 
 internal abstract class TraitementBase : ITraitement
 {
-    private bool running = false;
-    protected abstract Task ExecuterInterne(string projectRoot, IProgress<int> progress);
-    protected abstract bool PeutExecuterInterne(string projectRoot);
-
-    public virtual IEnumerable<Type> Dependencies => [];
-    public string Nom => GetType().Name;
-
-    public async Task Executer(string projectRoot, IProgress<int> progress)
+    public TraitementBase(string racineDuProjet)
     {
-        running = true;
-        await ExecuterInterne(projectRoot, progress);
-        running = false;
+        this.racineDuProjet = racineDuProjet;
+        var dossierDeTraitement = Path.Combine(racineDuProjet, Nom);
+        if (!Path.Exists(dossierDeTraitement))
+        {
+            Directory.CreateDirectory(dossierDeTraitement);
+        }
+    }
+    protected string racineDuProjet;
+    protected abstract Task<bool> ExecuterInterne(IProgress<int> progress);
+    public int? DerniereVersion()
+    {
+        return ReadVersion();
     }
 
-
-    public bool PeutExecuter(string projectRoot)
+    public async Task<bool> Executer(IProgress<int> progress, int version)
     {
-        return !running && PeutExecuterInterne(projectRoot);
+        Running = true;
+        var ok = await ExecuterInterne(progress);
+        if (ok)
+        {
+            WriteVersion(version);
+        }
+        Running = false;
+        return ok;
+    }
+
+    public virtual IEnumerable<Type> Dependences => [];
+    public string Nom => GetType().Name;
+    public bool Running { get; private set; }
+
+    private void WriteVersion(int version)
+    {
+        var cheminDuFichierDeVersion = Path.Combine(racineDuProjet, Nom, "version");
+        File.WriteAllText(cheminDuFichierDeVersion, $"{version}");
+    }
+
+    private int? ReadVersion()
+    {
+        var cheminDuFichierDeVersion = Path.Combine(racineDuProjet, Nom, "version");
+        if (!File.Exists(cheminDuFichierDeVersion))
+            return null;
+
+        var version = File.ReadAllText(cheminDuFichierDeVersion);
+
+        return int.Parse(version);
     }
 }

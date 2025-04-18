@@ -1,9 +1,8 @@
-﻿using Demusicker.UI;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Demusicker;
+namespace Demusicker.UI;
 
 public partial class EntryForm : Form
 {
@@ -49,7 +48,8 @@ public partial class EntryForm : Form
 
             Directory.CreateDirectory(projectDir);
 
-            string destAudioFile = Path.Combine(projectDir, Path.GetFileName(audioFilePath));
+            var destAudioFile = Path.Combine(projectDir, "sourceFile");
+            destAudioFile = Path.ChangeExtension(destAudioFile, Path.GetExtension(audioFilePath));
             File.Copy(audioFilePath, destAudioFile);
 
             var state = new
@@ -93,7 +93,7 @@ public partial class EntryForm : Form
                 traitementForm.Location = Location;
                 this.Hide();
                 traitementForm.ShowDialog();
-                this.Close();
+                this.Show();
             };
             panelProjects.Controls.Add(btn);
         }

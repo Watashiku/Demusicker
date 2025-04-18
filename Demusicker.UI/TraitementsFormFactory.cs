@@ -8,6 +8,6 @@ public class TraitementsFormFactory(IServiceProvider serviceProvider)
 {
     public TraitementsForm Create(string projectPath)
     {
-        return new TraitementsForm(projectPath, serviceProvider.GetRequiredService<ITraitementLoader>());
+        return new TraitementsForm(projectPath, serviceProvider.GetRequiredService<ITraitementManager>());
     }
 }
